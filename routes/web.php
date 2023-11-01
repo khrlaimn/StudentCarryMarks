@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\LecturerController;
+use App\Http\Controllers\LecturerController; 
+// Contoller
 
 /*
 |--------------------------------------------------------------------------
