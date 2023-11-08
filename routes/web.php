@@ -39,8 +39,13 @@ Route::get('lecturerpage', function () {
     return view('lecturerpage');
 });
 
-Route::get('/lecturerpage',  [LecturerController ::class, 'index'])->name('lecturerpage');
+// Route::get('/lecturerpage',  [LecturerController ::class, 'index'])->name('lecturerpage');
 
-Route::get('aboutpage', function () {
-    return view('aboutpage');
-});
+// Route::get('aboutpage', function () {
+//     return view('aboutpage');
+// });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/aboutpage', [App\Http\Controllers\HomeController::class,'aboutpage'])->name('about');
