@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lecture;
 use Illuminate\Http\Request;
 
-class LecturerController extends Controller
+class LectureController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view("lecturerpage");
+        return view("lecturer.index");
     }
 
     /**
@@ -33,7 +34,7 @@ class LecturerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Lecture $lecture)
     {
         //
     }
@@ -41,7 +42,7 @@ class LecturerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Lecture $lecture)
     {
         //
     }
@@ -49,7 +50,7 @@ class LecturerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Lecture $lecture)
     {
         //
     }
@@ -57,7 +58,7 @@ class LecturerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Lecture $lecture)
     {
         //
     }
