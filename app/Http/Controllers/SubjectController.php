@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subject;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
+
 
 class SubjectController extends Controller
 {
@@ -12,7 +14,13 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        return view("subject.index");
+        if (Gate::allows('isAdmin')){
+            $subjects = Subject::all();
+            return view('subject.index',compact('subjects'));
+        }
+        else{
+            abort(403);
+        }
     }
 
     /**
@@ -20,7 +28,11 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        //
+        if(auth()->user()->can('create')) {
+            return view('subject.create');
+        }
+        else
+            abort(403);
     }
 
     /**
@@ -36,7 +48,7 @@ class SubjectController extends Controller
      */
     public function show(Subject $subject)
     {
-        //
+        return view('subject.store');
     }
 
     /**
@@ -44,7 +56,7 @@ class SubjectController extends Controller
      */
     public function edit(Subject $subject)
     {
-        //
+        return view('subject.edit');
     }
 
     /**

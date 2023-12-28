@@ -12,7 +12,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return view("student.index");
+        $students = Student::all(); // select * from students
+        return view('student.index',compact('students'));
     }
 
     /**
@@ -20,7 +21,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('student.create');
     }
 
     /**
@@ -28,7 +29,23 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Student::create($request->all());
+
+        // include validation
+        $validated = $request->validate([
+            'name' =>'required|min:4|string|max:255',
+            'studID'=>'required|min:6|string|max:255',
+            'mobileNumber' => 'required|min:10|Numeric'
+        ]);
+
+        $student = new Student;
+        $student->name = $request->name;
+        $student->studID = $request->studID;
+        $student->mobileNumber = $request->mobileNumber;
+        $student->save();
+
+        return redirect()->route('student.index')
+            ->withSuccess('New student added successfully');
     }
 
     /**
@@ -36,7 +53,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        return view('student.show',compact('student'));
     }
 
     /**
@@ -44,7 +61,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        return view('student.edit',compact('student'));
     }
 
     /**
@@ -52,7 +69,21 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        //return $request;
+        // method 1 - take all fields
+        //$student->update($request->all());
+
+        // method 2 - do some checking
+        $validated = $request->validate([
+            'name' =>'required|min:4|string|max:255',
+            'studID'=>'required|min:6|string|max:255',
+            'mobileNumber' => 'required|min:10|Numeric'
+        ]);
+
+        $student->update($request->all());
+
+        return redirect()->route('student.index')
+            ->withSuccess('Student record has been updated successfully');
     }
 
     /**
@@ -60,6 +91,8 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+
+        $student->delete();
+        return redirect()->route('student.index');
     }
 }

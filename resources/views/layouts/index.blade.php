@@ -40,23 +40,46 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center justify-content-between">
+<header id="header" class="header fixed-top d-flex align-items-center">
+  <div class="container d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/StudentCarryMarksLogo.png" alt=""> -->
-        <h1>StudentCarryMarks<span>.</span></h1>
+          <!-- Uncomment the line below if you also wish to use an image logo -->
+          <!-- <img src="assets/img/StudentCarryMarksLogo.png" alt=""> -->
+          <h1>StudentCarryMarks<span>.</span></h1>
       </a>
 
-      @include('layouts.header')
+      <nav id="navbar" class="navbar">
+          <ul>
+              <li><a href="home">Home</a></li>
+              <li><a href="lecturerpage">Lecturer</a></li>
+              <li><a href="studentpage">Student</a></li>
+              <li><a href="aboutpage">About Us</a></li>
+              <li class="dropdown"><a href="#"><span>More</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                  <ul>
+                      <li><a href="mainpage">Home</a></li>
+                      <li><a href="lecturerpage">Lecturer</a></li>
+                      <li><a href="studentpage">Student</a></li>
+                      <li><a href="aboutpage">About Us</a></li>
+                  </ul>
+              </li>
+          </ul>
+      </nav>
 
-      <a class="btn-book-a-table" href="#book-a-table">Book a Table</a>
+      <form action="{{ route('logout') }}" method="POST">
+          @csrf
+          <button class="btn btn-book-a-table" type="submit">
+              {{ __('Logout') }}
+          </button>
+      </form>
+
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
-    </div>
-  </header><!-- End Header -->
+  </div>
+</header>
+  <!-- End Header -->
+
 
   <main id="main">
 
@@ -65,9 +88,73 @@
       @yield('content')
     </section><!-- End Content Section -->
 
-    
-  <!-- ======= Footer ======= -->
-    @include('layouts.footer')
+
+ <!-- ======= Footer ======= -->
+ <footer id="footer" class="footer">
+
+<div class="container">
+  <div class="row gy-3">
+    <div class="col-lg-3 col-md-6 d-flex">
+      <i class="bi bi-geo-alt icon"></i>
+      <div>
+        <h4>Address</h4>
+        <p>
+          University Tenaga Nasional <br>
+          Putrajaya - Malaysia<br>
+        </p>
+      </div>
+
+    </div>
+
+    <div class="col-lg-3 col-md-6 footer-links d-flex">
+      <i class="bi bi-telephone icon"></i>
+      <div>
+        <h4>Contact Us</h4>
+        <p>
+          <strong>Phone:</strong> +1 5589 55488 55<br>
+          <strong>Email:</strong> info@example.com<br>
+        </p>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 footer-links d-flex">
+      <i class="bi bi-clock icon"></i>
+      <div>
+        <h4>Opening Hours</h4>
+        <p>
+          <strong>Mon-Sat: 11AM</strong> - 23PM<br>
+          Sunday: Closed
+        </p>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 footer-links">
+      <h4>Follow Us</h4>
+      <div class="social-links d-flex">
+        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="copyright">
+    &copy; Copyright <strong><span>AimanAhmad</span></strong>. All Rights Reserved
+  </div>
+  <div class="credits">
+    <!-- All the links in the footer should remain intact. -->
+    <!-- You can delete the links only if you purchased the pro version. -->
+    <!-- Licensing information: https://bootstrapmade.com/license/ -->
+    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/ -->
+  </div>
+</div>
+
+</footer>
+<!-- End Footer -->
 
   <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

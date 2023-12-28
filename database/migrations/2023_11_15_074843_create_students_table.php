@@ -13,12 +13,16 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
+            $table->string('studID');
+            $table->string('name');
+            $table->string('mobileNumber');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migraphptions.
      */
     public function down(): void
     {
