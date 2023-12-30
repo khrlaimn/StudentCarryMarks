@@ -27,6 +27,29 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                        @can('isStudent')
+                            <a class="nav-link" href="{{ route('student.index') }}">Students</a>
+                        @endcan
+                        </li>
+                        <li class="nav-item">
+                        @can('isALecturer')
+                            <a class="nav-link" href="{{ route('lecturer.index') }}">Lecturer</a>
+                        @endcan
+                        </li>
+                        <li class="nav-item">
+                            @can('isAdmin')
+                            <a class="nav-link" href="{{ route('subject.index') }}">Subject</a>
+                            @endcan
+                        </li>
+                    </ul>
+                </div>
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">

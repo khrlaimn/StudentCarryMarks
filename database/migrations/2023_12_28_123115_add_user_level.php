@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) 
         { 
-            $table->integer('user_level')->default(5);
+            $table->integer('user_level')->default(5); // (*)
         });
     }
 
@@ -24,7 +24,8 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) 
         { 
-            $table->dropColumn('userLevel'); 
+            // $table->dropColumn('userLevel'); 
+            $table->dropColumn('user_level'); // KENA SAMA DENGAN NAMA ATAS (*)
         });
     }
 };

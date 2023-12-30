@@ -59,6 +59,7 @@ use App\Http\Controllers\HomeController;
 // Route::resource('/student', App\Http\Controllers\StudentController::class);
 
 // Route::resource('/subject', App\Http\Controllers\SubjectController::class);
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -66,10 +67,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::group(['middleware' => 'auth'], function () {
-    Route::resource('student', StudentController::class);
-    Route::resource('lecturer', LecturerController::class);
 
-    // only userLevel ==0 can access this route
-    Route::resource('subject', SubjectController::class);
+
+Route::group(['middleware' => 'auth'], function () {
+
+Route::resource('student', StudentController::class);
+    
+Route::resource('lecturer', LecturerController::class);
+
+// only userLevel ==0 can access this route
+
+Route::resource('subject', SubjectController::class)->middleware('can:isAdmin');
+
+
 });
